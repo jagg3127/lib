@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='keys',
-    version='0.1.2',
+    version='0.1.3',
     author='N/A',
     author_email='joshua.haught@rollinghills.k12.oh.us',
     description='School package for keypress recognition',
