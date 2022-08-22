@@ -17,5 +17,5 @@ setuptools.setup(
     },
     license='MIT',
     packages=['keys'],
-    install_requires=['pynput', 'os'],
+    install_requires=['pynput'],
 )
