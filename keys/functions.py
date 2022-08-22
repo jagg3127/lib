@@ -180,8 +180,7 @@ def run(Class, Skey:str="esc", log:int=3, wasd=False, keys:int=1):
         return print(f"{log} is not a number 1-3")
     if __find_Skey(Skey.lower()):
         return print(f"ERROR: {Skey.lower()} is not a recognized key")
-    if wasd != True or wasd != False:    
-        return print("True or False silly")
+    
     globals()["wasd"] = wasd
 
 
