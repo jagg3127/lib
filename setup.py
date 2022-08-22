@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name='keys_school',
-    version='0.0.1',
+    version='0.1',
     author='N/A',
     author_email='joshua.haught@rollinghills.k12.oh.us',
     url='https://github.com/jagg3127/lib',
