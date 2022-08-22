@@ -8,8 +8,9 @@ def __p(key):
     main=globals()["main"]
     on=globals()["on"]
     try:
+        test=key.char
         if on:
-            print(key.char)
+            print(test)
     except:
         if key == Key.up:
             main.execute(main, "up")
