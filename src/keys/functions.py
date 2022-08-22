@@ -1,7 +1,7 @@
 import string
 abc=list(string.ascii_lowercase)
 from getkey import getkey, keys
-from keynames import all_keys
+from .keynames import all_keys
 buffer=[]
 
 def __re_run(Class):
