@@ -1,11 +1,11 @@
-
+import string
+abc=list(string.ascii_lowercase)
 from getkey import getkey, keys
-from .keynames import all_keys
+from keynames import all_keys
 buffer=[]
 
 def __re_run(Class):
-    pass
-
+    run(Class, globals()["Skey"], globals()["log"], globals()["wasd"],globals()["coms"])
 def __one(key, main, wasd):
     if key == "up":
         try:
@@ -48,6 +48,7 @@ def __one(key, main, wasd):
                 main.execute(main, "left")
             except Exception as e:
                 print(e)
+    __re_run(main)
 
 def __two(key, main, wasd):
     if key == "up":
@@ -96,9 +97,116 @@ def __two(key, main, wasd):
                 main.execute(main, "left")
             except Exception as e:
                 print(e)
+    __re_run(main)
 
+def __three(key, main, wasd):
+    if key == "up":
+        try:
+            main.execute(main, "up")
+        except Exception as e:
+            print(e)
+    elif key == "down":
+        try:
+            main.execute(main, "down")
+        except Exception as e:
+            print(e)
+    elif key == "right":
+        try:
+            main.execute(main, "right")
+        except Exception as e:
+            print(e)
+    elif key == "left":
+        try:
+            main.execute(main, "left")
+        except Exception as e:
+            print(e)
+    elif key == "space": 
+        try:
+            main.execute(main, "space")
+        except Exception as e:
+            print(e)
+    else:
+        try:
+            if key in abc:
+                main.execute(main, key)
+        except Exception as e:
+            print(e)
+    if wasd:
+        if key == "w":
+            try:
+                main.execute(main, "up")
+            except Exception as e:
+                print(e)
+        elif key == "s":
+            try:
+                main.execute(main, "down")
+            except Exception as e:
+                print(e)
+        elif key == "d":
+            try:
+                main.execute(main, "right")
+            except Exception as e:
+                print(e)
+        elif key == "a":
+            try:
+                main.execute(main, "left")
+            except Exception as e:
+                print(e)
+    __re_run(main)
 
-
+def __four(key, main, wasd):
+    if key == "up":
+        try:
+            main.execute(main, "up")
+        except Exception as e:
+            print(e)
+    elif key == "down":
+        try:
+            main.execute(main, "down")
+        except Exception as e:
+            print(e)
+    elif key == "right":
+        try:
+            main.execute(main, "right")
+        except Exception as e:
+            print(e)
+    elif key == "left":
+        try:
+            main.execute(main, "left")
+        except Exception as e:
+            print(e)
+    elif key == "space": 
+        try:
+            main.execute(main, "space")
+        except Exception as e:
+            print(e)
+    else:
+        try:
+            main.execute(main, key)
+        except Exception as e:
+            print(e)
+    if wasd:
+        if key == "w":
+            try:
+                main.execute(main, "up")
+            except Exception as e:
+                print(e)
+        elif key == "s":
+            try:
+                main.execute(main, "down")
+            except Exception as e:
+                print(e)
+        elif key == "d":
+            try:
+                main.execute(main, "right")
+            except Exception as e:
+                print(e)
+        elif key == "a":
+            try:
+                main.execute(main, "left")
+            except Exception as e:
+                print(e)
+    __re_run(main)
 
 
 def run(Class, Skey:str="esc", log:bool=False, wasd=False, coms:int=1):
@@ -113,7 +221,9 @@ def run(Class, Skey:str="esc", log:bool=False, wasd=False, coms:int=1):
     except:
         pass
     key=keys.name(key).lower()
-    #print(key)
+    if log:
+        print(key)
+    globals()["Skey"] = Skey
     globals()["wasd"] = wasd
     globals()["log"]=log
     globals()["Class"]=Class
@@ -128,10 +238,10 @@ def run(Class, Skey:str="esc", log:bool=False, wasd=False, coms:int=1):
         __one(key, Class, wasd)
     elif coms == 2:
         __two(key, Class, wasd)
-    """elif coms == 3:
+    elif coms == 3:
         __three(key, Class, wasd)
     elif coms == 4:
-        __four(key, Class, wasd)""" 
+        __four(key, Class, wasd)
 
 
 
