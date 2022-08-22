@@ -1,5 +1,4 @@
 from pynput.keyboard import Key, Listener
-import os
 
 def __r(key):
     if key == Key.esc and key == Key.f1:
@@ -7,8 +6,10 @@ def __r(key):
 
 def __p(key):
     main=globals()["main"]
+    on=globals()["on"]
     try:
-        print(key.char)
+        if on:
+            print(key.char)
     except:
         if key == Key.up:
             main.execute(main, "up")
@@ -24,12 +25,14 @@ def __p(key):
             return True            
         else:
             x=str(key).split(".")
-            print(f"Special: {x[1]}")
+            if on:
+                print(f"Special: {x[1]}")
 
 
 
-def run(x):
+def run(x, on:bool):
     globals()["main"] = x
+    globals()["on"] = on
 
     with Listener(on_press=__p, on_release=__r) as l:
         l.start
