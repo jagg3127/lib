@@ -5,28 +5,8 @@ from .keynames import all_keys
 buffer=[]
 
 def __re_run(Class):
-    run(Class, globals()["Skey"], globals()["log"], globals()["wasd"],globals()["coms"])
+    run(Class, globals()["stop"], globals()["logs"], globals()["wasd"],globals()["coms"])
 def __one(key, main, wasd):
-    if key == "up":
-        try:
-            main.execute(main, "up")
-        except Exception as e:
-            print(e)
-    elif key == "down":
-        try:
-            main.execute(main, "down")
-        except Exception as e:
-            print(e)
-    elif key == "right":
-        try:
-            main.execute(main, "right")
-        except Exception as e:
-            print(e)
-    elif key == "left":
-        try:
-            main.execute(main, "left")
-        except Exception as e:
-            print(e)
     if wasd:
         if key == "w":
             try:
@@ -48,9 +28,50 @@ def __one(key, main, wasd):
                 main.execute(main, "left")
             except Exception as e:
                 print(e)
+    if key == "up":
+        try:
+            main.execute(main, "up")
+        except Exception as e:
+            print(e)
+    elif key == "down":
+        try:
+            main.execute(main, "down")
+        except Exception as e:
+            print(e)
+    elif key == "right":
+        try:
+            main.execute(main, "right")
+        except Exception as e:
+            print(e)
+    elif key == "left":
+        try:
+            main.execute(main, "left")
+        except Exception as e:
+            print(e)
     __re_run(main)
 
 def __two(key, main, wasd):
+    if wasd:
+        if key == "w":
+            try:
+                main.execute(main, "up")
+            except Exception as e:
+                print(e)
+        elif key == "s":
+            try:
+                main.execute(main, "down")
+            except Exception as e:
+                print(e)
+        elif key == "d":
+            try:
+                main.execute(main, "right")
+            except Exception as e:
+                print(e)
+        elif key == "a":
+            try:
+                main.execute(main, "left")
+            except Exception as e:
+                print(e)
     if key == "up":
         try:
             main.execute(main, "up")
@@ -76,6 +97,9 @@ def __two(key, main, wasd):
             main.execute(main, "space")
         except Exception as e:
             print(e)
+    __re_run(main)
+
+def __three(key, main, wasd):
     if wasd:
         if key == "w":
             try:
@@ -97,9 +121,6 @@ def __two(key, main, wasd):
                 main.execute(main, "left")
             except Exception as e:
                 print(e)
-    __re_run(main)
-
-def __three(key, main, wasd):
     if key == "up":
         try:
             main.execute(main, "up")
@@ -131,6 +152,9 @@ def __three(key, main, wasd):
                 main.execute(main, key)
         except Exception as e:
             print(e)
+    __re_run(main)
+
+def __four(key, main, wasd):
     if wasd:
         if key == "w":
             try:
@@ -152,9 +176,6 @@ def __three(key, main, wasd):
                 main.execute(main, "left")
             except Exception as e:
                 print(e)
-    __re_run(main)
-
-def __four(key, main, wasd):
     if key == "up":
         try:
             main.execute(main, "up")
@@ -185,31 +206,10 @@ def __four(key, main, wasd):
             main.execute(main, key)
         except Exception as e:
             print(e)
-    if wasd:
-        if key == "w":
-            try:
-                main.execute(main, "up")
-            except Exception as e:
-                print(e)
-        elif key == "s":
-            try:
-                main.execute(main, "down")
-            except Exception as e:
-                print(e)
-        elif key == "d":
-            try:
-                main.execute(main, "right")
-            except Exception as e:
-                print(e)
-        elif key == "a":
-            try:
-                main.execute(main, "left")
-            except Exception as e:
-                print(e)
     __re_run(main)
 
 
-def run(Class, Skey:str="esc", log:bool=False, wasd=False, coms:int=1):
+def run(Class, stop:str="esc", logs:bool=False, wasd=False, coms:int=1):
     key=getkey()
     try:
         all=all_keys[key]
@@ -221,17 +221,17 @@ def run(Class, Skey:str="esc", log:bool=False, wasd=False, coms:int=1):
     except:
         pass
     key=keys.name(key).lower()
-    if log:
+    if logs:
         print(key)
-    globals()["Skey"] = Skey
+    globals()["stop"] = stop
     globals()["wasd"] = wasd
-    globals()["log"]=log
+    globals()["logs"]=logs
     globals()["Class"]=Class
     if coms <= 4:
         globals()["coms"] = coms
     else:
         return print(f"{coms} is not a number 1-4 (ERROR: 4 doesnt work right now)")
-    if key == Skey.lower():
+    if key == stop.lower():
         return print("TERMINATED")
     
     elif coms == 1:
@@ -318,13 +318,13 @@ def test(key, x):
 
 class text:
     run = """
-keys.run(Class, log, wasd):
+keys.run(Class, stop:str="esc", logs:bool=False, wasd=False, coms:int=1):
  **Class(class parameter): the class that the execute function is in
-  *Skey(key):
+  *stop(key):
     DEFAULT esc
      key: the key that stops the script
 
-  *log(1, 2, or 3):
+  *logs(1, 2, or 3):
     DEFAULT 3 
      1: if you want all buttons logged
      2: if you want some buttons logged
@@ -335,7 +335,7 @@ keys.run(Class, log, wasd):
      True: adds wasd to the foward/back/left/right commands
      False: removes wasd from the foward/back/left/right commands
     
-  *keys(1, 2, 3, 4):
+  *com(1, 2, 3, 4):
     DEFAULT 1
      1: activates commands for "up" "down" "right" "left"
      2: adds commands for "space" 
@@ -344,18 +344,18 @@ keys.run(Class, log, wasd):
 
 
 EXAMPLES:
-  keys.run(Class=Class, keys=1, wasd=False, log=2) or lib.run(Class, esc, 2, False, 1)"""
+  keys.run(Class=Class, keys=1, wasd=False, logs=2) or lib.run(Class, esc, 2, False, 1)"""
     full="""
 *OPTIONAL
 **REQUIRED
 
-keys.run(Class, log, wasd):
+keys.run(Class, logs, wasd):
  **Class(class parameter): the class that the execute function is in
-  *Skey(key):
+  *stop(key):
     DEFAULT esc
      key: the key that stops the script
 
-  *log(True or False):
+  *logs(True or False):
     DEFAULT False 
      True: if you want all buttons logged
      False: if you want no buttons logged
@@ -371,11 +371,9 @@ keys.run(Class, log, wasd):
      2: adds commands for "space" 
      3: adds commands for all normal characters(like abcd, and so on)
      4: adds commands for special characters(like f1, backspace, home, and so on)
-       IMPORTANT: 4 is still a work in ptogress
-
 
 EXAMPLES:
-  keys.run(Class=Class, keys=1, wasd=False, log=2) or lib.run(Class, esc, 2, False, 1)
+  keys.run(Class=Class, com=1, wasd=False, logs=2) or lib.run(Class, esc, 2, False, 1)
 
 
 If you have further questions/ideas come talk to me or the teacher"""
